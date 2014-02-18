@@ -10,7 +10,11 @@ requires jQuery 1.7+
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(['jquery'], factory);
-	} else {
+	}else if (typeof module === 'object' && typeof require === 'function') {
+        // Nodejs with browserify
+        var jquery = require("jquery");
+        factory(jquery);
+    } else {
 		// Browser globals
 		factory(jQuery);
 	}
